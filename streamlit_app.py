@@ -1,20 +1,15 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
-import streamlit as st
 import requests
-import matplotlib.pyplot as plit
 import json
+import pandas as pd
 
-api_key = open('9bac03f9f1d1dc4b5cf06c47b0550cc36a71afe54e43330c8bc7f7802c126d70','r').read()
+filing_url = "https://www.sec.gov/ix?doc=/Archives/edgar/data/1809519/000095017022002348/gdrx-20211231.htm"
 
-company = "FB"
-years = 2
+xbrl_converter_api_endpoint = "https://api.sec-api.io/xbrl-to-json"
 
-income_statement = requests.get(f"https://financialmodelingprep.com/api/v3/income-statement/{company}?limit={years}apikey={api_key}")
+final_url = xbrl_converter_api_endpoint + "?htm-url=" + filing_url + "&token=" + api_key
 
-income_statement = income_statement.json()
+response = requests.get(final_url)
 
-print(income_statement)
+xbrl_json = json.loads(response.text)
 
+print(json.dumps(xbrl_json['StatementsOfIncome']['RevenueFromContractWithCustomerExcludingAssessedTax'][0:2], indent=1)) 
