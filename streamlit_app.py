@@ -1,17 +1,18 @@
-import requests
-import json
+st.write(*args, **kwargs)
+
 import pandas as pd
+df = pd.DataFrame({'col1': [1,2,3]})
+df  # 👈 Draw the dataframe
 
-api_key = "9bac03f9f1d1dc4b5cf06c47b0550cc36a71afe54e43330c8bc7f7802c126d70"
+x = 10
+'x', x  # 👈 Draw the string 'x' and then the value of x
 
-filing_url = "https://www.sec.gov/ix?doc=/Archives/edgar/data/1809519/000095017022002348/gdrx-20211231.htm"
+# Also works with most supported chart types
+import matplotlib.pyplot as plt
+import numpy as np
 
-xbrl_converter_api_endpoint = "https://api.sec-api.io/xbrl-to-json"
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
 
-final_url = xbrl_converter_api_endpoint + "?htm-url=" + filing_url + "&token=" + api_key
-
-response = requests.get(final_url)
-
-xbrl_json = json.loads(response.text)
-
-print(json.dumps(xbrl_json['StatementsOfIncome']['RevenueFromContractWithCustomerExcludingAssessedTax'][0:2], indent=1)) 
+fig  # 👈 Draw a Matplotlib chart
