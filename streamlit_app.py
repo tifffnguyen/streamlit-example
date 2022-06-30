@@ -1,18 +1,13 @@
-st.write(*args, **kwargs)
-
+import streamlit as st
+import numpy as np 
 import pandas as pd
-df = pd.DataFrame({'col1': [1,2,3]})
-df  # 👈 Draw the dataframe
-
-x = 10
-'x', x  # 👈 Draw the string 'x' and then the value of x
-
-# Also works with most supported chart types
+from PIL import Image
+from streamlit_timeline import timeline
+import plotly.express as px
+import plotly.figure_factory as ff
+import requests
+import re
+import io
 import matplotlib.pyplot as plt
-import numpy as np
-
-arr = np.random.normal(1, 1, size=100)
-fig, ax = plt.subplots()
-ax.hist(arr, bins=20)
-
-fig  # 👈 Draw a Matplotlib chart
+import streamlit.components.v1 as components
+import tensorflow as tf
